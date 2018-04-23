@@ -1,28 +1,45 @@
 /**
- * Created by apple on 2018/4/21.
- */
+* Created by apple on 2018/4/21.
+*/
 <template>
-  <div>
-    我的页面
+  <div class="page">
+    <myList :items = 'items2'></myList>
   </div>
 </template>
 
 
 <script>
-  export default{
-    data(){
+  import myList from '../../components/myList.vue'
+  export default {
+    data() {
       return {
-        my:'我的'
+        text:'ffff',
+        items2: [
+          {
+            icon: '',
+            url: '',
+            title: '单词',
+            text: '说明'
+          },
+          {
+            icon: '',
+            url: '',
+            title: '个人信息',
+            text: '说明'
+          }
+        ]
       }
     },
-    
-    // 计算
-    computed(){
-    
+    components: {
+      myList
     },
-    methods:{
-      handle(){
-      
+    // 计算
+    computed() {
+
+    },
+    methods: {
+      handle() {
+
       }
     }
   }

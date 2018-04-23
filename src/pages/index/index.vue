@@ -1,19 +1,19 @@
 <template>
   <!--<div class="container" @click="clickHandle('test click', $event)">-->
-  
+
   <!--<div class="userinfo" @click="bindViewTap">-->
   <!--<img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />-->
   <!--<div class="userinfo-nickname">-->
   <!--<card :text="userInfo.nickName"></card>-->
   <!--</div>-->
   <!--</div>-->
-  
+
   <!--<div class="usermotto">-->
   <!--<div class="user-motto">-->
-  
+
   <!--</div>-->
   <!--</div>-->
-  
+
   <!--<form class="form-container">-->
   <!--<input type="text" class="form-control" v-model="motto" placeholder="v-model" />-->
   <!--<input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />-->
@@ -28,12 +28,11 @@
   <!--<div class="weui-cell__ft">说明文字</div>-->
   <!--</div>-->
   <!--</div>-->
-  <div>
-    <card :text="motto"></card>
+  <div class="page">
     <form action="" @submit="submit">
       <inputSearch :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
       <xnwInput :inputName="explain"></xnwInput>
-      
+
       <button type="primary" form-type="submit">保存</button>
     </form>
   </div>
@@ -45,8 +44,9 @@
   import inputSearch from '@/components/inputSearch.vue'
   import xnwInput from '@/components/input.vue'
   import PubliceService from '../../service/PublicService'
+
   export default {
-    data () {
+    data() {
       return {
         inputShowed: false,
         inputVal: '',
@@ -59,28 +59,26 @@
       xnwInput,
     },
     methods: {
-      inputValueHandle(value){
+      inputValueHandle(value) {
         console.log(value)
       },
-      submit(e){
+      submit(e) {
         console.log(e);
-        wx.removeStorage('words');
+        // wx.removeStorage('words');
         let array = PubliceService.getStoreage('words') || [];
-        let valueObj = e.target.value || {};
-        let newArray = array.concat([valueObj]);
-        if (PubliceService.isRepeat(newArray)) {
-          PubliceService.openConfirm({title: '单词有重复', content: '您输入的单词与之前存储的有冲突,是否替换?'}, () => {
-            // 如果单词有重复 则替换相应的单词
-            for (let i = 0; i < array.length; i++) {
-              if (valueObj.word === array[i].word) {
-                array[i].word = valueObj.word
-              }
-            }
-            PubliceService.setStoreage('words',array)
-          });
-        } else {
-          PubliceService.setStoreage('words', newArray)
+        let value = e.target.value;
+        let valueObj = value ? {[value.word]: value.explain}:{};
+        for (let i = 0; i < array.length; i++) {
+          if(array[i][value.word]){
+            PubliceService.openConfirm({title: '单词有重复', content: '您输入的单词与之前存储的有冲突,是否替换?'}, () => {
+              array[i][value.word] = value.explain;
+              PubliceService.setStoreage('words', array)
+            });
+            return;
+          }
         }
+        array.push(valueObj);
+        PubliceService.setStoreage('words', array)
       }
     }
   }
@@ -138,18 +136,18 @@
       height: 90 rpx;
       line-height: 90 rpx;
     }
-    
+
   }
-  
+
   .searchbar-result {
     margin-top: 0;
     font-size: 14px;
   }
-  
+
   .searchbar-result:before {
     display: none;
   }
-  
+
   .weui-cell {
     padding: 12px 15px 12px 35px;
   }

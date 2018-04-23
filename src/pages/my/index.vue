@@ -19,13 +19,13 @@
             icon: '',
             url: '',
             title: '单词',
-            text: '说明'
+            text: ''
           },
           {
             icon: '',
             url: '',
             title: '个人信息',
-            text: '说明'
+            text: ''
           }
         ]
       }

@@ -72,13 +72,13 @@
           if(array[i][value.word]){
             PubliceService.openConfirm({title: '单词有重复', content: '您输入的单词与之前存储的有冲突,是否替换?'}, () => {
               array[i][value.word] = value.explain;
-              PubliceService.setStoreage('words', array)
+              PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true))
             });
             return;
           }
         }
         array.push(valueObj);
-        PubliceService.setStoreage('words', array)
+        PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true))
       }
     }
   }

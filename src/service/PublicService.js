@@ -28,9 +28,9 @@ export default class PublicService {
     let hash = {};
     let array = [];
     for (let obj of arr) {
-        array.push(obj.word)
+      array.push(obj.word)
     }
-    for(let i in array){
+    for (let i in array) {
       if (hash[array[i]])
         return true;
       hash[array[i]] = true;
@@ -38,6 +38,57 @@ export default class PublicService {
     return false;
   }
 
+  static returnDegree(score) {
+    let degree = '';
+    if (score < 10)
+      return config.degree.num1;
+    else if (score < 30)
+      return config.degree.num2;
+    else if (score < 80)
+      return config.degree.num3;
+    else if (score < 150)
+      return config.degree.num4;
+    else if (score < 250)
+      return config.degree.num5;
+    else if (score < 400)
+      return config.degree.num6;
+    else if (score < 1000)
+      return config.degree.num7;
+  }
+  /**
+   * @param data 需要转换结构的源数据
+   * @param needColNum 需要增加table序号列数据
+   * @param needKey 需要增加唯一标识key
+   * @param currentPage 当前页
+   * @param pageSize 每页数据数目
+   * @returns {*} 转换后的数据
+   */
+  static transformArrayData (data, needColNum, needKey, currentPage, pageSize) {
+    // 需要添加table序号
+    if (needColNum) {
+      for (let i = 0; i < data.length; i++) {
+        // 有分页
+        if (currentPage && pageSize) {
+          data[i]['num'] = pageSize * (currentPage - 1) + i + 1;
+          // 无分页
+        } else {
+          data[i]['num'] = i + 1;
+        }
+      }
+      // 需要添加唯一标识key
+    }
+    // 添加Key
+    if (needKey) {
+      for (let i = 0; i < data.length; i++) {
+        // 若数据不存在key字段,则增加唯一标识key
+        if (!data[i]['key']) data[i]['key'] = i;
+      }
+    }
+    if (!needColNum && !needColNum) {
+      console.info('检查transformArrayData方法参数(needColNum,needKey),返回数据结构未改变');
+    }
+    return data;
+  }
   /**
    * @param 第一个参数给一对象 用于设置modal的相关信息
    * @param handle 为点击确定需要做的事
@@ -56,12 +107,12 @@ export default class PublicService {
           handle()
 
         } else {
+          if(!cancel) return;
           cancel()
         }
       }
     });
   }
-
 
 
 }

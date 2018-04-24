@@ -17,16 +17,16 @@
         items2: [
           {
             icon: '',
-            url: '',
-            title: '单词',
-            text: ''
-          },
-          {
-            icon: '',
-            url: '',
-            title: '个人信息',
+            url: '../wordList/main',
+            title: '单词列表',
             text: ''
           }
+          // {
+          //   icon: '',
+          //   url: '',
+          //   title: '个人信息',
+          //   text: ''
+          // }
         ]
       }
     },

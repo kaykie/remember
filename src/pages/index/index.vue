@@ -32,7 +32,6 @@
     <form action="" @submit="submit">
       <inputSearch :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
       <xnwInput :inputName="explain"></xnwInput>
-
       <button type="primary" form-type="submit">保存</button>
     </form>
   </div>

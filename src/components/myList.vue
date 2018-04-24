@@ -11,7 +11,7 @@
       <div class="user-motto">
       </div>
     </div>
-    <navigator v-for="(item,index) in items" :key="index" url="item.url" class="weui-cell weui-cell_access"
+    <navigator v-for="(item,index) in items" :key="index" :url="item.url" class="weui-cell weui-cell_access"
                hover-class="weui-cell_active">
       <div v-if="item.icon" class="weui-cell__hd">
         <image :src="item.icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
@@ -37,7 +37,7 @@
     },
     methods: {
       bindViewTap() {
-        const url = '../logs/main'
+        const url = '../logs/main';
         wx.navigateTo({url})
       },
       getUserInfo() {

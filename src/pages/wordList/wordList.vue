@@ -22,14 +22,23 @@
         this.wordList = PubliceService.getStoreage('words');
         this.wordList.forEach(item => item.isShow = false)
       },
-      deleteHandle(){
-        console.log(2234)
+      deleteHandle(value){
+        console.log(value);
+        this.wordList.filter(item => item.key !== value);
+        this.wordList.forEach(item =>{
+          delete item.isShow
+        });
+        PubliceService.setStoreage('words',this.wordList)
       },
-      editHandle(){
-    console.log(2234)
+      editHandle(value){
+        const url = '../index/main';
+        wx.navigateTo({url});
+
       },
-      hideHandle(){
-    console.log(2234)
+      hideHandle(value){
+        let newArray = JSON.parse(JSON.stringify(this.wordList));
+        newArray.find(item => item.key === value).isShow = !newArray.find(item => item.key === value).isShow;
+        this.wordList = newArray
       },
       openHandle(key){
         console.log(key);

@@ -19,8 +19,8 @@
     },
     methods:{
       initPage(){
-        this.wordList = PubliceService.getStoreage('words');
-        this.wordList.forEach(item => item.isShow = false)
+        this.wordList = PubliceService.getStoreage('words') || [];
+        this.wordList.length && this.wordList.forEach(item => item.isShow = false)
       },
       deleteHandle(value){
         console.log(value);
@@ -31,7 +31,7 @@
         PubliceService.setStoreage('words',this.wordList)
       },
       editHandle(value){
-        const url = '../index/main';
+        const url = `./cell/main?key=${value}`;
         wx.navigateTo({url});
 
       },

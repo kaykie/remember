@@ -27,11 +27,11 @@
   export default {
     data() {
       return {
-        inputVal: '',
+        inputVal: this.inputValue || '',
         inputShowed: false
       }
     },
-    props: ['inputName'],
+    props: ['inputName','inputValue'],
     created() {
       console.log(this);
     },

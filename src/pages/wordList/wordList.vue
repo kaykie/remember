@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <myPanel :items="wordList" @delete = 'deleteHandle' @edit = 'editHandle' @hide='hideHandle'></myPanel>
+    <myPanel :items="wordList" @open="openHandle" @delete = 'deleteHandle' @edit = 'editHandle' @hide='hideHandle'></myPanel>
   </div>
 </template>
 
@@ -20,6 +20,7 @@
     methods:{
       initPage(){
         this.wordList = PubliceService.getStoreage('words');
+        this.wordList.forEach(item => item.isShow = false)
       },
       deleteHandle(){
         console.log(2234)
@@ -29,13 +30,20 @@
       },
       hideHandle(){
     console.log(2234)
+      },
+      openHandle(key){
+        console.log(key);
+        let newArray = JSON.parse(JSON.stringify(this.wordList));
+        let word = newArray.find(item2 => item2.key === key);
+        word.isShow = true;
+        this.wordList = newArray;
       }
     },
-    created(){
+    mounted(){
       this.initPage()
     }
   }
-  
+
 </script>
 
 <style lang="less">

@@ -1,19 +1,19 @@
 <template>
   <div class="page">
     <form action="" @submit="submit">
-      <inputSearch :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
-      <xnwInput :inputName="explain"></xnwInput>
+      <inputSearch :inputName="word" :input-value="inputValue" @inputHandle='inputValueHandle'></inputSearch>
+      <xnwInput :input-value="textareaValue" :inputName="explain"></xnwInput>
       <button type="primary" form-type="submit">保存</button>
     </form>
-    
+
   </div>
 </template>
 
 <script>
   import inputSearch from '../../../components/inputSearch.vue'
   import xnwInput from '../../../components/input.vue'
-  
-  
+  import PubliceService from '../../../service/PublicService'
+
   export default{
     data(){
       return {
@@ -26,14 +26,24 @@
       xnwInput
     },
     methods(){
-    
+
     },
     props:[],
     mounted(){
-      console.log(this.$root.$mp.query);
-      
+      let key = this.$root.$mp.query.key * 1;
+      const wordList = PubliceService.getStoreage('words');
+      wordList.forEach(item => {
+        delete item.isShow;
+      });
+      let uniqueObj = wordList.filter(item => item.key === key)[0];
+      for(let k in uniqueObj){
+        if(k !== 'key'){
+          this.inputValue = k;
+          this.textareaValue = uniqueObj[k]
+        }
+      }
     }
-    
+
   }
 </script>
 
@@ -45,28 +55,28 @@
     justify-content: center;
     flex: 1;
   .weui-search-bar__input {
-    height: 90 rpx;
-    line-height: 90 rpx;
+    height: 90rpx;
+    line-height: 90rpx;
   }
   .weui-search-bar__cancel-btn, .weui-icon-clear, .weui-search-bar__box {
-    line-height: 90 rpx;
+    line-height: 90rpx;
   }
   .weui-search-bar__label {
-    height: 90 rpx;
-    line-height: 90 rpx;
+    height: 90rpx;
+    line-height: 90rpx;
   }
-  
+
   }
-  
+
   .searchbar-result {
     margin-top: 0;
     font-size: 14px;
   }
-  
+
   .searchbar-result:before {
     display: none;
   }
-  
+
   .weui-cell {
     padding: 12rpx 15rpx 12rpx 35rpx;
   }

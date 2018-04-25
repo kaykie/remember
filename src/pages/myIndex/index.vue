@@ -1,37 +1,8 @@
 <template>
-  <!--<div class="container" @click="clickHandle('test click', $event)">-->
-
-  <!--<div class="userinfo" @click="bindViewTap">-->
-  <!--<img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />-->
-  <!--<div class="userinfo-nickname">-->
-  <!--<card :text="userInfo.nickName"></card>-->
-  <!--</div>-->
-  <!--</div>-->
-
-  <!--<div class="usermotto">-->
-  <!--<div class="user-motto">-->
-
-  <!--</div>-->
-  <!--</div>-->
-
-  <!--<form class="form-container">-->
-  <!--<input type="text" class="form-control" v-model="motto" placeholder="v-model" />-->
-  <!--<input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />-->
-  <!--</form>-->
-  <!--<a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>-->
-  <!--<button class="weui-btn" size="small" open-type="share" type="default">click</button>-->
-  <!--<div class="weui-cell">-->
-  <!--<div class="weui-cell__hd">-->
-  <!--<image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>-->
-  <!--</div>-->
-  <!--<div class="weui-cell__bd">标题文字</div>-->
-  <!--<div class="weui-cell__ft">说明文字</div>-->
-  <!--</div>-->
-  <!--</div>-->
   <div class="page">
     <form action="" @submit="submit">
-      <inputSearch :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
-      <xnwInput :inputName="explain"></xnwInput>
+      <inputSearch :input-value="" :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
+      <xnwInput :input-value="" :inputName="explain"></xnwInput>
       <button type="primary" form-type="submit">保存</button>
     </form>
   </div>

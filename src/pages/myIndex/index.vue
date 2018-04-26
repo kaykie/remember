@@ -13,7 +13,7 @@
   import inputSearch from '../../components/inputSearch.vue'
   import xnwInput from '@/components/input.vue'
   import PubliceService from '../../service/PublicService'
-  import { youdao, baidu, google } from 'translation.js'
+//  import { youdao, baidu, google } from 'translation.js'
   import 'translation.js/chrome-youdao'
   export default {
     data() {
@@ -25,15 +25,15 @@
       }
     },
     created(){
-      console.log(youdao);
-      google.translate({
-        text: 'test',
-        from: 'en',
-        to: 'zh-CN'
-      })
-        .then(res=>{
-          console.log(res)
-        })
+//      console.log(youdao);
+//      google.translate({
+//        text: 'test',
+//        from: 'en',
+//        to: 'zh-CN'
+//      })
+//        .then(res=>{
+//          console.log(res)
+//        })
     },
     components: {
       inputSearch,

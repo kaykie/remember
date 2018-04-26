@@ -2,7 +2,7 @@
   <div class="weui-cells weui-cells_after-title">
     <div class="weui-cell">
       <div class="weui-cell__bd">
-        <textarea v-bind="inputValue || inputVal" class="" :name="inputName" placeholder="释义" style="height: 3.3em"/>
+        <textarea v-model="inputValue" class="" :name="inputName" placeholder="释义" style="height: 3.3em"/>
         <div class="weui-textarea-counter">0/200</div>
       </div>
     </div>

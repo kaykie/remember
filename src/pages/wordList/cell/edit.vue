@@ -1,7 +1,8 @@
 <template>
   <div class="page">
     <form action="" @submit="submit">
-      <inputSearch :inputName="word" :input-value="inputValue" @inputHandle='inputValueHandle'></inputSearch>
+      <inputSearch :inputName="word" :input-value="inputValue"  @inputHandle='inputValueHandle'></inputSearch>
+
       <xnwInput :input-value="textareaValue" :inputName="explain"></xnwInput>
       <button type="primary" form-type="submit">保存</button>
     </form>
@@ -18,15 +19,26 @@
     data(){
       return {
         inputValue:'',
-        textareaValue:''
+        textareaValue:'',
+        word:'word',
+        explain:'explain'
       }
     },
     components:{
       inputSearch,
       xnwInput
     },
-    methods(){
+    methods:{
+      submit(e){
+        console.log(e);
+        // wx.removeStorage('words');
+        let array = PubliceService.getStoreage('words') || [];
+        let value = e.target.value;
+        console.log(array,value);
+        for(let i = 0;i<array.length;i++){
 
+        }
+      }
     },
     props:[],
     mounted(){

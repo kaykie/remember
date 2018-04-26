@@ -1,20 +1,20 @@
 <template>
   <div class="page">
     <form action="" @submit="submit">
-      <inputSearch :input-value="" :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
-      <xnwInput :input-value="" :inputName="explain"></xnwInput>
+      <inputSearch :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
+      <xnwInput :inputName="explain"></xnwInput>
       <button type="primary" form-type="submit">保存</button>
     </form>
   </div>
-
 </template>
 
 <script>
   //  import card from '@/components/card'
-  import inputSearch from '@/components/inputSearch.vue'
+  import inputSearch from '../../components/inputSearch.vue'
   import xnwInput from '@/components/input.vue'
   import PubliceService from '../../service/PublicService'
-
+  import { youdao, baidu, google } from 'translation.js'
+  import 'translation.js/chrome-youdao'
   export default {
     data() {
       return {
@@ -23,6 +23,17 @@
         word: 'word',
         explain: 'explain'
       }
+    },
+    created(){
+      console.log(youdao);
+      google.translate({
+        text: 'test',
+        from: 'en',
+        to: 'zh-CN'
+      })
+        .then(res=>{
+          console.log(res)
+        })
     },
     components: {
       inputSearch,
@@ -52,40 +63,6 @@
       }
     }
   }
-  //    data () {
-  //      return {
-  //        motto: 'Hello World',
-  //        userInfo: {}
-  //      }
-  //    },
-  //    components: {
-  //      card
-  //    },
-  //    methods: {
-  //      bindViewTap () {
-  //        const url = '../logs/main'
-  //        wx.navigateTo({url})
-  //      },
-  //      getUserInfo () {
-  //        // 调用登录接口
-  //        wx.login({
-  //          success: () => {
-  //            wx.getUserInfo({
-  //              success: (res) => {
-  //                this.userInfo = res.userInfo
-  //              }
-  //            })
-  //          }
-  //        })
-  //      },
-  //      clickHandle (msg, ev) {
-  //        console.log('clickHandle:', msg, ev)
-  //      }
-  //    },
-  //    created () {
-  //      // 调用应用实例的方法获取全局数据
-  //      this.getUserInfo()
-  //    }
 </script>
 
 <style lang="less" scoped>
@@ -96,15 +73,15 @@
     justify-content: center;
     flex: 1;
     .weui-search-bar__input {
-      height: 90 rpx;
-      line-height: 90 rpx;
+      height: 90rpx;
+      line-height: 90rpx;
     }
     .weui-search-bar__cancel-btn, .weui-icon-clear, .weui-search-bar__box {
-      line-height: 90 rpx;
+      line-height: 90rpx;
     }
     .weui-search-bar__label {
-      height: 90 rpx;
-      line-height: 90 rpx;
+      height: 90rpx;
+      line-height: 90rpx;
     }
 
   }

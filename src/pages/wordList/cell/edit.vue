@@ -36,10 +36,30 @@
         let value = e.target.value;
         console.log(array,value);
         for(let i = 0;i<array.length;i++){
-          if(array[i]){
-
+          for(let key in array[i]){
+            if(key === value.word && key !== 'key'){
+              array[i][value.word] = value.explain;
+              console.log(array);
+              wx.showToast({
+                title:'更新成功',
+                icon:'success',
+                duation:1500
+              });
+              PubliceService.setStoreage('words',array);
+              return
+            }
           }
         }
+        let obj = {[value.word]:value.explain,key:array.length};
+        array.push(obj);
+        wx.showToast({
+          title:'新增成功',
+          icon:'success',
+          duation:1500
+        });
+        PubliceService.setStoreage('words',array);
+        console.log(array)
+        
       }
     },
     props:[],

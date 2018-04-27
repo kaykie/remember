@@ -53,6 +53,11 @@
           }
         }
         array.push(valueObj);
+        wx.showToast({
+          title:'新增成功',
+          icon:'success',
+          duation:1500
+        });
         PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true))
       }
     }

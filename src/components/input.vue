@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import Bus from './bus.vue'
   export default {
     data(){
       return{
@@ -20,6 +21,12 @@
     methods: {
       inputChange(e) {
       }
+    },
+    mounted(){
+      console.log(Bus);
+      Bus.$on('blurHandle',(v)=>{
+        console.log(v)
+      })
     }
 
   }

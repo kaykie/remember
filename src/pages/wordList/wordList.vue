@@ -24,11 +24,17 @@
       },
       deleteHandle(value){
         console.log(value);
-        this.wordList.filter(item => item.key !== value);
-        this.wordList.forEach(item =>{
+        let newArray = this.wordList.filter(item => item.key !== value);
+        this.wordList = newArray;
+        wx.showToast({
+          title: '已删除',
+          icon: 'success',
+          duration: 1500
+        });
+        newArray.forEach(item =>{
           delete item.isShow
         });
-        PubliceService.setStoreage('words',this.wordList)
+        PubliceService.setStoreage('words',newArray)
       },
       editHandle(value){
         const url = `./cell/main?key=${value}`;

@@ -18,6 +18,7 @@
 <script>
   import request from '../utils/miniRequest'
   import PubliceService from '../service/PublicService'
+  import Bus from './bus.vue'
   export default {
     data() {
       return {
@@ -55,7 +56,7 @@
         request(this.inputValue)
           .then(res => {
             console.log(res);
-            this.$emit('blurHandle',res.data.trans_result[0])
+            Bus.$emit('blurHandle',res.data.trans_result[0])
           })
       }
     }

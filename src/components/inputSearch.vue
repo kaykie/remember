@@ -3,7 +3,7 @@
     <div class="weui-cells">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <input class="weui-input" :name="inputName" :focus="true" type="text" @input="inputTyping"
+          <input class="weui-input" :name="inputName" :focus="true" type="text" @blur="inputTyping"
                  v-model="inputValue" placeholder="请输入需要查找的单词">
           <div class="weui-icon-clear" v-if="inputValue&&inputValue.length > 0" @click="clearInput">
             <icon type="clear" size="14"></icon>
@@ -11,24 +11,19 @@
         </div>
       </div>
     </div>
-    <div class="weui-cells weui-cells_after-title" v-if="isShowDownWordList">
-      <div class="weui-cell">
-        <div @click="selectWord(22)" class="weui-cell__bd">标题文字</div>
-      </div>
-      <div class="weui-cell">
-        <div @click="selectWord(22)" class="weui-cell__bd">标题文字</div>
-      </div>
-    </div>
   </div>
 </template>
 
 
 <script>
+  import request from '../utils/miniRequest'
+  import PubliceService from '../service/PublicService'
   export default {
     data() {
       return {
         // inputShowed: false
-        isShowDownWordList:false
+        isShowDownWordList:false,
+        wordDownList:[]
       }
     },
     props:{
@@ -56,8 +51,12 @@
         // this.inputShowed = true
       },
       inputTyping() {
-        this.isShowDownWordList = true
-        // console.log(this.inputVal)
+        this.isShowDownWordList = true;
+        request(this.inputValue)
+          .then(res => {
+            console.log(res);
+            this.$emit('blurHandle',res.data.trans_result[0])
+          })
       }
     }
   }
@@ -70,6 +69,9 @@
     top:0;
     left: 0;
     background: rgba(255, 255, 255, 0);
+    .weui-icon-clear{
+      top:30rpx
+    }
   }
 
 </style>

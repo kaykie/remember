@@ -12,10 +12,10 @@
       </div>
       <div class="weui-form-preview__ft" v-if="item2.isShow">
         <div @click="handle('删除',item2.key)" class="weui-form-preview__btn weui-form-preview__btn_primary"
-             hover-class="weui-form-preview__btn_active">删除
+             >删除
         </div>
         <div @click="handle('编辑',item2.key)" class="weui-form-preview__btn weui-form-preview__btn_primary"
-             hover-class="weui-form-preview__btn_active">编辑
+        >编辑
         </div>
       </div>
     </div>
@@ -73,6 +73,15 @@
     .weui-form-preview__ft {
       line-height: 60rpx;
       font-size: 0.8em;
+    }
+    .weui-form-preview__ft:after{
+      display: none;
+    }
+    .weui-form-preview__hd:after{
+      display: none;
+    }
+    .weui-form-preview:before{
+      display: none;
     }
     .weui-form-preview__bd {
       font-size: 0.7em;

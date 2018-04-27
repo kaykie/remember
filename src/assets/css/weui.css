@@ -235,10 +235,6 @@ icon {
   background-color: #fff;
 }
 
-.weui-form-preview:before {
-  top: 0;
-  border-top: 1rpx solid #d9d9d9;
-}
 
 .weui-form-preview:after,
 .weui-form-preview:before {

@@ -24,19 +24,10 @@
       }
     },
     created(){
-      request('computer')
-        .then(res =>{
-          console.log(res)
-        })
-//      console.log(youdao);
-//      google.translate({
-//        text: 'test',
-//        from: 'en',
-//        to: 'zh-CN'
-//      })
-//        .then(res=>{
-//          console.log(res)
-//        })
+      // request('computer')
+      //   .then(res =>{
+      //     console.log(res)
+      //   })
     },
     components: {
       inputSearch,

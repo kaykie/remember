@@ -55,6 +55,7 @@ export default class PublicService {
     else if (score < 1000)
       return config.degree.num7;
   }
+
   /**
    * @param data 需要转换结构的源数据
    * @param needColNum 需要增加table序号列数据
@@ -63,7 +64,7 @@ export default class PublicService {
    * @param pageSize 每页数据数目
    * @returns {*} 转换后的数据
    */
-  static transformArrayData (data, needColNum, needKey, currentPage, pageSize) {
+  static transformArrayData(data, needColNum, needKey, currentPage, pageSize) {
     // 需要添加table序号
     if (needColNum) {
       for (let i = 0; i < data.length; i++) {
@@ -89,6 +90,7 @@ export default class PublicService {
     }
     return data;
   }
+
   /**
    * @param 第一个参数给一对象 用于设置modal的相关信息
    * @param handle 为点击确定需要做的事
@@ -107,12 +109,44 @@ export default class PublicService {
           handle()
 
         } else {
-          if(!cancel) return;
+          if (!cancel) return;
           cancel()
         }
       }
     });
   }
 
+  /**
+   * 防抖
+   * @param delta 为延迟的秒数
+   * @param fun 为需要调用的函数
+   * **/
+  static debounceLog(delta, fun) {
+    let timeoutID = null;
+    if (timeoutID) clearTimeout(timeoutID);  // reset timer
+    timeoutID = setTimeout(function () {
+      fun();
+    }, delta);
+  }
 
+  /**
+   * 节流
+   * **/
+
+  static throttle(fn, interval2) {
+    let last;
+    let timer;
+    let interval = interval2 || 200;
+    let now = +new Date();
+    if (last && now - last < interval) {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        last = now;
+        fn();
+      }, interval);
+    } else {
+      last = now;
+      fn();
+    }
+  }
 }

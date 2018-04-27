@@ -36,7 +36,9 @@
         let value = e.target.value;
         console.log(array,value);
         for(let i = 0;i<array.length;i++){
+          if(array[i]){
 
+          }
         }
       }
     },

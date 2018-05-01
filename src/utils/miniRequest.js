@@ -15,7 +15,7 @@ export default function (params) {
   var sign = MD5(str1);
   return new Promise((resolve,reject)=>{
     wx.request({
-      url: 'http://api.fanyi.baidu.com/api/trans/vip/translate', //仅为示例，并非真实的接口地址
+      url: 'https://fanyi-api.baidu.com/api/trans/vip/translate', //仅为示例，并非真实的接口地址
       data: {
         q: query,
         appid: appid,

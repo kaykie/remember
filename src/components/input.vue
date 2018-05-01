@@ -25,7 +25,7 @@
     mounted(){
       console.log(Bus);
       Bus.$on('blurHandle',(v)=>{
-        console.log(v)
+        this.inputValue = v.dst
       })
     }
 

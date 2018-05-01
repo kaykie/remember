@@ -1,8 +1,8 @@
 <template>
   <div class="page">
-    <form action="" @submit="submit">
-      <inputSearch :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
-      <xnwInput :inputName="explain"></xnwInput>
+    <form action="" @submit="submit" @reset="resetForm">
+      <inputSearch :input-value="inputValue" :inputName="word" @inputHandle='inputValueHandle'></inputSearch>
+      <xnwInput :input-value="textareaValue" :inputName="explain"></xnwInput>
       <button type="primary" form-type="submit">保存</button>
     </form>
   </div>
@@ -18,9 +18,10 @@
     data() {
       return {
         inputShowed: false,
-        inputVal: '',
         word: 'word',
-        explain: 'explain'
+        explain: 'explain',
+        inputValue:null,
+        textareaValue:null
       }
     },
     created(){
@@ -37,8 +38,14 @@
       inputValueHandle(value) {
         console.log(value)
       },
+      resetFrom(e){
+        console.log(e)
+      },
       submit(e) {
         console.log(e);
+        if(!e.target.value){
+          return
+        }
         // wx.removeStorage('words');
         let array = PubliceService.getStoreage('words') || [];
         let value = e.target.value;
@@ -47,12 +54,16 @@
           if(array[i][value.word]){
             PubliceService.openConfirm({title: '单词有重复', content: '您输入的单词与之前存储的有冲突,是否替换?'}, () => {
               array[i][value.word] = value.explain;
-              PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true))
+              PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true));
+              this.inputValue = '';
+              this.textareaValue = '';
             });
             return;
           }
         }
         array.push(valueObj);
+        this.inputValue = '';
+        this.textareaValue = '';
         wx.showToast({
           title:'新增成功',
           icon:'success',

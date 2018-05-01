@@ -4,7 +4,7 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">
           <input class="weui-input" :name="inputName" :focus="true" type="text" @blur="inputTyping"
-                 v-model="inputValue" placeholder="请输入需要查找的单词">
+                 v-model="inputValue" v-bind="inputValue" placeholder="请输入单词">
           <div class="weui-icon-clear" v-if="inputValue&&inputValue.length > 0" @click="clearInput">
             <icon type="clear" size="14"></icon>
           </div>
@@ -29,7 +29,7 @@
     },
     props:{
       inputValue:{
-        default:''
+        default:'aaa'
       },
       inputName:{
         default:'www'

@@ -10,6 +10,7 @@
 
 <script>
   import config from '../../config'
+  import bus from './bus.vue'
   import PubliceService from '../service/PublicService'
   export default {
     data(){
@@ -19,13 +20,16 @@
       }
     },
     props: ['text'],
-    created(){
-      console.log(wx);
+    mounted(){
+      bus.$on('addHandle',()=>{
+        this.initPage()
+      });
       this.initPage()
     },
     methods:{
       initPage(){
         let array = PubliceService.getStoreage('words');
+        console.log(array);
         this.wordTotal = array.length;
         this.degree = PubliceService.returnDegree(this.wordTotal);
       }

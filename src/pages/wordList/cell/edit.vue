@@ -46,8 +46,8 @@
                 duation:1500
               });
               PubliceService.setStoreage('words',array);
-              PubliceService.debounceLog(500,wx.navigateBack({delta:1}));
-              
+              PubliceService.debounceLog(500,()=>{wx.navigateBack({delta:1})});
+
               return
             }
           }
@@ -59,10 +59,10 @@
           icon:'success',
           duation:1500
         });
-        PubliceService.debounceLog(500,wx.navigateBack({delta:1}));
+        PubliceService.debounceLog(500,()=>{wx.navigateBack({delta:1})});
         PubliceService.setStoreage('words',array);
         console.log(array)
-        
+
       }
     },
     props:[],

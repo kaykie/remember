@@ -25,7 +25,7 @@
 
 <script>
   import card from './card.vue'
-
+  import bus from './bus.vue'
   export default {
     data() {
       return {
@@ -54,7 +54,13 @@
         })
       }
     },
-    created() {
+    updated(){
+
+    },
+    mounted() {
+      // bus.$on('addHandle',()=>{
+      //   this.getUserInfo()
+      // });
       // 调用应用实例的方法获取全局数据
       this.getUserInfo()
     },

@@ -3,7 +3,7 @@
     <div class="weui-cells">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <input class="weui-input" :name="inputName" :focus="true" type="text" @blur="inputTyping"
+          <input class="weui-input" :name="inputName" type="text" @blur="inputTyping"
                  v-model="inputValue" v-bind="inputValue" placeholder="请输入单词">
           <div class="weui-icon-clear" v-if="inputValue&&inputValue.length > 0" @click="clearInput">
             <icon type="clear" size="14"></icon>
@@ -53,6 +53,7 @@
       },
       inputTyping() {
         this.isShowDownWordList = true;
+        console.log(this.inputValue);
         request(this.inputValue)
           .then(res => {
             console.log(res);

@@ -13,6 +13,7 @@
   import inputSearch from '../../components/inputSearch.vue'
   import xnwInput from '@/components/input.vue'
   import PubliceService from '../../service/PublicService'
+  import bus from '../../components/bus.vue'
   import request from '../../utils/miniRequest'
   export default {
     data() {
@@ -20,8 +21,8 @@
         inputShowed: false,
         word: 'word',
         explain: 'explain',
-        inputValue:null,
-        textareaValue:null
+        inputValue:'',
+        textareaValue:''
       }
     },
     created(){
@@ -52,7 +53,7 @@
         let valueObj = value ? {[value.word]: value.explain}:{};
         for (let i = 0; i < array.length; i++) {
           if(array[i][value.word]){
-            PubliceService.openConfirm({title: '单词有重复', content: '您输入的单词与之前存储的有冲突,是否替换?'}, () => {
+            PubliceService.openConfirm({title: '单词有重复', content: '您输入的单词已存在列表中,是否替换?'}, () => {
               array[i][value.word] = value.explain;
               PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true));
               this.inputValue = '';
@@ -70,6 +71,7 @@
           duation:1500
         });
         PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true))
+        bus.$emit('addHandle');
       }
     }
   }

@@ -7,15 +7,15 @@ export default class PublicService {
    * @param key为需要存储的字段
    * @param value 为需要存储的东西,可以为any
    * **/
-  static async setStoreage(key, value) {
-    await wx.setStorageSync(key, value)
+  static setStoreage(key, value) {
+    wx.setStorageSync(key, value)
   }
 
   /**
    * @param key 为需要获取数据的字段
    * **/
   static getStoreage(key) {
-    console.log(wx.getStorageSync(key))
+    console.log(wx.getStorageSync(key));
     return wx.getStorageSync(key);
   }
 

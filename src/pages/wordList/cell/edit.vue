@@ -14,7 +14,7 @@
   import inputSearch from '../../../components/inputSearch.vue'
   import xnwInput from '../../../components/input.vue'
   import PubliceService from '../../../service/PublicService'
-
+  import bus from '../../../components/bus.vue'
   export default{
     data(){
       return {
@@ -47,7 +47,7 @@
               });
               PubliceService.setStoreage('words',array);
               PubliceService.debounceLog(500,()=>{wx.navigateBack({delta:1})});
-
+              bus.$emit('editHandle');
               return
             }
           }
@@ -61,6 +61,7 @@
         });
         PubliceService.debounceLog(500,()=>{wx.navigateBack({delta:1})});
         PubliceService.setStoreage('words',array);
+        bus.$emit('editHandle');
         console.log(array)
 
       }

@@ -70,7 +70,7 @@
           icon:'success',
           duation:1500
         });
-        PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true))
+        PubliceService.setStoreage('words', PubliceService.transformArrayData(array,false,true));
         bus.$emit('addHandle');
       }
     }
